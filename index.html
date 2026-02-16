@@ -3,165 +3,262 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تحميل التطبيق</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap" rel="stylesheet">
+<title>INTERNET ILIMITADO</title>
 
 <style>
+
+/* خط احترافي */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');
+
 body{
-    font-family:'Cairo',sans-serif;
-    background:#0f172a;
-    color:white;
-    text-align:center;
-    margin:0;
-    padding:20px;
+margin:0;
+font-family:'Cairo',sans-serif;
+background:linear-gradient(180deg,#021933,#000814);
+color:white;
+text-align:center;
+overflow-x:hidden;
 }
+
+/* الشريط الاعلاني */
+
+.marquee{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(0,0,0,0.7);
+padding:12px 0;
+overflow:hidden;
+z-index:999;
+border-bottom:1px solid #00ffd5;
+}
+
+.marquee span{
+display:inline-block;
+white-space:nowrap;
+font-size:17px;
+color:#FFD700;
+text-shadow:0 0 10px #FFD700;
+animation:moveRight 80s linear infinite;
+}
+
+@keyframes moveRight{
+0%{transform:translateX(-100%);}
+80%{transform:translateX(100%);}
+100%{transform:translateX(100%);}
+}
+
+/* المحتوى */
 
 .container{
-    max-width:400px;
-    margin:auto;
+padding-top:80px;
+max-width:500px;
+margin:auto;
 }
 
-h1{
-    font-weight:900;
-    font-size:26px;
-    color:#00ffcc;
-}
-
-/* الخط الاعلاني */
-.ad-text{
-    font-size:22px;
-    font-weight:900;
-    margin:20px 0;
-    color:#ffd700;
-    text-shadow:0 0 10px #ffd700;
+.title{
+font-size:34px;
+color:#00ffd5;
+text-shadow:0 0 15px #00ffd5;
 }
 
 /* زر التحميل */
-.download-btn{
-    background:#00ffcc;
-    border:none;
-    padding:15px 30px;
-    font-size:20px;
-    border-radius:12px;
-    cursor:pointer;
-    animation:shake 1s infinite, glow 2s infinite alternate;
+
+.downloadBtn{
+margin-top:35px;
+padding:18px;
+border-radius:18px;
+background:linear-gradient(45deg,#00ffd5,#00aaff);
+font-size:22px;
+font-weight:bold;
+color:black;
+cursor:pointer;
+box-shadow:0 0 25px #00ffd5;
+animation:glow 2s infinite alternate,shake 1.5s infinite;
 }
 
-@keyframes shake{
-    0%{transform:translateX(0)}
-    25%{transform:translateX(-3px)}
-    50%{transform:translateX(3px)}
-    75%{transform:translateX(-3px)}
+.downloadBtn span{
+display:block;
+font-size:15px;
+margin-top:5px;
 }
 
 @keyframes glow{
-    from{box-shadow:0 0 10px #00ffcc}
-    to{box-shadow:0 0 25px #00ffcc}
+from{box-shadow:0 0 10px #00ffd5;}
+to{box-shadow:0 0 45px #00ffd5;}
 }
 
-.features{
-    text-align:right;
-    margin-top:20px;
-    line-height:2;
+@keyframes shake{
+0%,100%{transform:translateX(0)}
+50%{transform:translateX(4px)}
 }
+
+/* عداد */
 
 .counter{
-    margin-top:15px;
-    font-size:18px;
+margin-top:25px;
+font-size:20px;
+color:#FFD700;
 }
 
-/* نافذة منبثقة */
+/* المميزات */
+
+.features{
+margin-top:40px;
+text-align:right;
+padding:0 25px;
+}
+
+.features h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+.feature{
+margin:18px 0;
+font-size:19px;
+position:relative;
+padding-right:30px;
+}
+
+.feature::before{
+content:"✔";
+position:absolute;
+right:0;
+color:#00ff66;
+font-size:22px;
+text-shadow:0 0 10px #00ff66;
+}
+
+/* تليجرام */
+
+.telegram{
+margin-top:40px;
+font-size:24px;
+color:#00c3ff;
+cursor:pointer;
+text-shadow:0 0 10px #00c3ff;
+}
+
+/* نافذة الانتظار */
+
 .popup{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.8);
-    justify-content:center;
-    align-items:center;
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+z-index:9999;
 }
 
-.popup-box{
-    background:#111;
-    padding:30px;
-    border-radius:12px;
+.popupContent{
+background:#021933;
+padding:45px;
+border-radius:20px;
+box-shadow:0 0 30px #00ffd5;
+font-size:22px;
 }
+
+/* الفوتر */
+
+.footer{
+margin-top:60px;
+font-size:14px;
+color:#ccc;
+padding-bottom:30px;
+}
+
 </style>
 </head>
 
-<body>
+<body oncontextmenu="return false">
+
+<!-- الشريط الاعلاني -->
+
+<div class="marquee">
+<span>
+🔥 INTERNET ILIMITADO — سرعة خارقة — بدون فصل — اتصال ثابت — VIP SYSTEM — أفضل تطبيق إنترنت مجاني — يعمل على جميع الشبكات — خفيف وسريع 🔥
+</span>
+</div>
 
 <div class="container">
 
-<h1>تحميل التطبيق</h1>
+<div class="title">تحميل التطبيق</div>
 
-<div class="ad-text">
-🔥 سرعة خارقة بدون فصل — أفضل تطبيق إنترنت مجاني 🔥
-</div>
-
-<button class="download-btn" onclick="startDownload()">
+<div class="downloadBtn" onclick="startDownload()">
 ⬇ تحميل الآن
-</button>
-
-<div class="counter">
-⭐ عدد التحميلات: <span id="count">0</span>
+<span>INTERNET ILIMITADO</span>
 </div>
+
+<div class="counter">⭐ عدد التحميلات: <span id="count">1308</span></div>
 
 <div class="features">
-<h3>مميزات التطبيق:</h3>
-✔ يعمل بسرعة عالية جداً  
-✔ بدون إعلانات مزعجة  
-✔ تطبيق خالي من المشاكل  
-✔ اتصال ثابت بدون انقطاع  
-✔ سهل الاستخدام  
+<h2>مميزات التطبيق</h2>
+
+<div class="feature">سرعة إنترنت خارقة جداً</div>
+<div class="feature">يعمل بدون فصل</div>
+<div class="feature">اتصال ثابت ومستقر</div>
+<div class="feature">بدون إعلانات مزعجة</div>
+<div class="feature">خفيف وسهل الاستخدام</div>
+
+</div>
+
+<div class="telegram" onclick="window.open('https://t.me/INTERNET_ILIMITADOO')">
+📩 تواصل تليجرام
+</div>
+
+<div class="footer">
+AHMAD EL 2024 ©<br>
+HASSA KAKO
 </div>
 
 </div>
 
-<!-- نافذة التحميل -->
+<!-- نافذة الانتظار -->
+
 <div class="popup" id="popup">
-<div class="popup-box">
-<h3>⚡ فحص VIP قبل التحميل</h3>
-<p id="timer">جاري التحقق... 5</p>
+<div class="popupContent">
+⏳ جاري تجهيز الرابط...<br><br>
+انتظر <span id="timer">5</span> ثواني
 </div>
 </div>
 
 <script>
-const link="https://www.mediafire.com/file/yta55fap4w6x0mj/INTERNET_ILIMITADO_2.1.apk/file";
 
-/* عداد التحميلات */
-let downloads=localStorage.getItem("downloads") || 0;
-document.getElementById("count").innerText=downloads;
+/* عداد التحميلات الحقيقي */
 
-/* بدء التحميل */
+let downloads = localStorage.getItem("downloads") || 1308;
+document.getElementById("count").innerText = downloads;
+
+/* التحميل */
+
 function startDownload(){
 
-    document.getElementById("popup").style.display="flex";
+downloads++;
+localStorage.setItem("downloads", downloads);
+document.getElementById("count").innerText = downloads;
 
-    let time=5;
-    let timer=setInterval(()=>{
-        time--;
-        document.getElementById("timer").innerText="جاري التحقق... "+time;
+document.getElementById("popup").style.display="flex";
 
-        if(time<=0){
-            clearInterval(timer);
+let time=5;
 
-            downloads++;
-            localStorage.setItem("downloads",downloads);
-            document.getElementById("count").innerText=downloads;
+let interval=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText=time;
 
-            window.location.href=link;
-        }
-
-    },1000);
+if(time<=0){
+clearInterval(interval);
+window.location.href="https://www.mediafire.com/file/yta55fap4w6x0mj/INTERNET_ILIMITADO_2.1.apk/file";
 }
 
-/* منع نسخ الرابط */
-document.addEventListener("copy",e=>e.preventDefault());
-document.addEventListener("contextmenu",e=>e.preventDefault());
+},1000);
+
+}
+
 </script>
 
 </body>
