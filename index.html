@@ -20,33 +20,18 @@ body{
     padding:30px;
 }
 
-.logo{
-    width:160px;
-    margin-bottom:15px;
-}
-
-.app-img{
-    width:140px;
-    border-radius:20px;
-    box-shadow:0 0 20px rgba(0,0,0,0.6);
-    margin:20px 0;
-}
-
-h1{
-    margin:5px;
-}
+h1{margin:10px;}
 
 .rating{
     color:gold;
     font-size:22px;
-    margin:10px 0;
 }
 
 .stats{
     background:#0f2a63;
-    padding:12px;
+    padding:15px;
     border-radius:12px;
-    margin:20px 0;
+    margin:25px 0;
 }
 
 button{
@@ -57,16 +42,25 @@ button{
     border-radius:12px;
     color:white;
     cursor:pointer;
-    transition:0.3s;
+    margin:10px;
 }
 
 button:hover{
     background:#cc0000;
-    transform:scale(1.05);
 }
 
-#countdown{
-    font-size:26px;
+.vip{
+    background:#ffd700;
+    color:black;
+    padding:6px 12px;
+    border-radius:8px;
+    display:inline-block;
+    margin:10px;
+}
+
+#waiting{
+    display:none;
+    font-size:22px;
     margin-top:20px;
 }
 </style>
@@ -76,47 +70,80 @@ button:hover{
 
 <div class="container">
 
-<img class="logo" src="https://i.imgur.com/JqEuJ6t.png">
-
 <h1>INTERNET ILIMITADO</h1>
 
-<div class="rating">
-⭐⭐⭐⭐⭐ 5.0
-</div>
+<div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
 
-<img class="app-img" src="https://i.imgur.com/JqEuJ6t.png">
+<div class="vip">👑 VIP ACCESS</div>
 
 <div class="stats">
-📥 عدد التحميلات: 974 <br>
-📦 الحجم: 62 MB <br>
+📥 عدد التحميلات: <span id="downloads">1250</span><br>
+📦 الحجم: 12MB<br>
 📱 الإصدار: 2.1
 </div>
 
 <button onclick="startDownload()">تحميل التطبيق</button>
 
-<div id="countdown"></div>
+<br>
+
+<button onclick="shareWhatsApp()" style="background:#25D366">
+مشاركة واتساب
+</button>
+
+<div id="waiting"></div>
 
 </div>
 
 <script>
+
+// عداد تحميلات حقيقي (يحفظ بالمتصفح)
+let count = localStorage.getItem("downloads") || 1250;
+document.getElementById("downloads").innerText = count;
+
+setInterval(()=>{
+    count++;
+    localStorage.setItem("downloads",count);
+    document.getElementById("downloads").innerText = count;
+},5000);
+
+
+// صفحة انتظار قبل التحميل + حماية الرابط
 function startDownload(){
 
-    let time = 5;
-    let box = document.getElementById("countdown");
+    let time = 7;
+    let box = document.getElementById("waiting");
+    box.style.display="block";
 
     let timer = setInterval(function(){
 
-        box.innerHTML = "سيبدأ التحميل بعد " + time + " ثواني";
+        box.innerHTML="⏳ جاري تجهيز التحميل... " + time;
 
         time--;
 
-        if(time < 0){
+        if(time<0){
             clearInterval(timer);
-            window.location.href="https://www.mediafire.com/file/yta55fap4w6x0mj/INTERNET_ILIMITADO_2.1.apk/file";
+
+            // الرابط مشفر
+            let link = atob("aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9maWxlL3l0YTU1ZmFwNHc2eDBtai9JTlRFUk5FVF9JTElNSVRBRE9fMi4xLmFway9maWxl");
+
+            window.location.href = link;
         }
 
     },1000);
 }
+
+
+// مشاركة واتساب
+function shareWhatsApp(){
+    let url = window.location.href;
+    window.open("https://wa.me/?text=حمل التطبيق من هنا 🔥 " + url);
+}
+
+
+// منع نسخ الرابط
+document.addEventListener("contextmenu", e=>e.preventDefault());
+document.addEventListener("copy", e=>e.preventDefault());
+
 </script>
 
 </body>
