@@ -3,147 +3,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تحميل INTERNET ILIMITADO</title>
+<title>INTERNET ILIMITADO VIP</title>
 
 <style>
 body{
     margin:0;
-    font-family:Arial;
-    background:linear-gradient(135deg,#0b1f4b,#021027);
+    font-family:tahoma;
+    background:linear-gradient(135deg,#001a3d,#000814);
     color:white;
     text-align:center;
 }
 
-.container{
-    max-width:500px;
-    margin:auto;
-    padding:30px;
-}
-
-h1{margin:10px;}
-
-.rating{
-    color:gold;
-    font-size:22px;
-}
-
-.stats{
-    background:#0f2a63;
-    padding:15px;
-    border-radius:12px;
-    margin:25px 0;
-}
-
-button{
+/* شريط الترحيب */
+.marquee{
     background:#ff0000;
-    padding:18px 40px;
+    padding:10px;
+    font-weight:bold;
+    animation:move 10s linear infinite;
+}
+@keyframes move{
+    from{transform:translateX(100%);}
+    to{transform:translateX(-100%);}
+}
+
+/* زر تحميل */
+.download-btn{
+    background:linear-gradient(45deg,#ff0000,#ff6600);
+    padding:18px 45px;
+    border-radius:50px;
     font-size:20px;
-    border:none;
-    border-radius:12px;
+    font-weight:bold;
     color:white;
+    border:none;
     cursor:pointer;
-    margin:10px;
-}
-
-button:hover{
-    background:#cc0000;
-}
-
-.vip{
-    background:#ffd700;
-    color:black;
-    padding:6px 12px;
-    border-radius:8px;
-    display:inline-block;
-    margin:10px;
-}
-
-#waiting{
-    display:none;
-    font-size:22px;
     margin-top:20px;
+    animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+}
+
+/* صندوق المعلومات */
+.box{
+    background:#102b60;
+    margin:20px;
+    padding:20px;
+    border-radius:20px;
+}
+
+/* زر واتساب */
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    width:55px;
+    height:55px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    text-decoration:none;
+    color:white;
+}
+
+/* شاشة VIP */
+.vip-screen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#000000f0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.timer{
+    font-size:40px;
+    color:#00ffea;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="marquee">
+🚀 مرحباً بك في تطبيق INTERNET ILIMITADO VIP — سرعة عالية — مميز — بدون حدود
+</div>
 
 <h1>INTERNET ILIMITADO</h1>
 
-<div class="rating">⭐⭐⭐⭐⭐ 5.0</div>
+<div style="font-size:25px;">⭐⭐⭐⭐⭐ 5.0</div>
 
-<div class="vip">👑 VIP ACCESS</div>
-
-<div class="stats">
-📥 عدد التحميلات: <span id="downloads">1250</span><br>
-📦 الحجم: 12MB<br>
+<div class="box">
+📥 عدد التحميلات: <span id="downloads">0</span><br>
+📦 الحجم: 62MB<br>
 📱 الإصدار: 2.1
 </div>
 
-<button onclick="startDownload()">تحميل التطبيق</button>
+<button class="download-btn" onclick="startVIP()">تحميل التطبيق VIP</button>
 
-<br>
+<a class="whatsapp" target="_blank"
+href="https://wa.me/?text=🔥 حمل التطبيق VIP الآن https://ahmad3el.github.io/download">
+🟢
+</a>
 
-<button onclick="shareWhatsApp()" style="background:#25D366">
-مشاركة واتساب
-</button>
-
-<div id="waiting"></div>
-
+<!-- شاشة VIP -->
+<div class="vip-screen" id="vip">
+<h2>🔒 VIP SYSTEM</h2>
+<p>جاري التحقق من العضوية...</p>
+<div class="timer" id="timer">5</div>
 </div>
 
 <script>
+let downloads = localStorage.getItem("count") || 974;
+document.getElementById("downloads").innerText = downloads;
 
-// عداد تحميلات حقيقي (يحفظ بالمتصفح)
-let count = localStorage.getItem("downloads") || 1250;
-document.getElementById("downloads").innerText = count;
+function startVIP(){
+    document.getElementById("vip").style.display="flex";
 
-setInterval(()=>{
-    count++;
-    localStorage.setItem("downloads",count);
-    document.getElementById("downloads").innerText = count;
-},5000);
-
-
-// صفحة انتظار قبل التحميل + حماية الرابط
-function startDownload(){
-
-    let time = 7;
-    let box = document.getElementById("waiting");
-    box.style.display="block";
-
-    let timer = setInterval(function(){
-
-        box.innerHTML="⏳ جاري تجهيز التحميل... " + time;
-
+    let time=5;
+    let timer=setInterval(()=>{
         time--;
+        document.getElementById("timer").innerText=time;
 
-        if(time<0){
+        if(time<=0){
             clearInterval(timer);
 
-            // الرابط مشفر
-            let link = atob("aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9maWxlL3l0YTU1ZmFwNHc2eDBtai9JTlRFUk5FVF9JTElNSVRBRE9fMi4xLmFway9maWxl");
+            downloads++;
+            localStorage.setItem("count",downloads);
 
-            window.location.href = link;
+            // رابط التحميل المباشر
+            window.location.href="https://download1586.mediafire.com/yourlink/INTERNET_ILIMITADO_2.1.apk";
         }
-
     },1000);
 }
 
-
-// مشاركة واتساب
-function shareWhatsApp(){
-    let url = window.location.href;
-    window.open("https://wa.me/?text=حمل التطبيق من هنا 🔥 " + url);
-}
-
-
-// منع نسخ الرابط
-document.addEventListener("contextmenu", e=>e.preventDefault());
-document.addEventListener("copy", e=>e.preventDefault());
-
+/* حماية النسخ */
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("copy",e=>e.preventDefault());
 </script>
 
 </body>
