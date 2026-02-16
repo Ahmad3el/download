@@ -3,162 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INTERNET ILIMITADO VIP</title>
+<title>تحميل التطبيق</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap" rel="stylesheet">
 
 <style>
 body{
-    margin:0;
-    font-family:Tahoma;
-    background:linear-gradient(135deg,#001a3d,#000814);
+    font-family:'Cairo',sans-serif;
+    background:#0f172a;
     color:white;
     text-align:center;
-}
-
-/* النص الإعلاني المتحرك */
-.marquee{
-    font-size:22px;
-    font-weight:bold;
-    background:linear-gradient(90deg,#ff0000,#ffea00,#00fff7);
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:move 12s linear infinite;
-    white-space:nowrap;
-}
-
-@keyframes move{
-    from{transform:translateX(100%);}
-    to{transform:translateX(-100%);}
-}
-
-/* زر تحميل */
-.download-btn{
-    background:linear-gradient(45deg,#ff0000,#ff6600);
-    padding:18px 45px;
-    border-radius:50px;
-    font-size:22px;
-    font-weight:bold;
-    color:white;
-    border:none;
-    cursor:pointer;
-    margin-top:30px;
-    animation:pulse 1.2s infinite;
-}
-
-@keyframes pulse{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.1);}
-    100%{transform:scale(1);}
-}
-
-/* صندوق */
-.box{
-    background:#102b60;
-    margin:20px;
+    margin:0;
     padding:20px;
-    border-radius:20px;
 }
 
-/* نافذة التحميل */
+.container{
+    max-width:400px;
+    margin:auto;
+}
+
+h1{
+    font-weight:900;
+    font-size:26px;
+    color:#00ffcc;
+}
+
+/* الخط الاعلاني */
+.ad-text{
+    font-size:22px;
+    font-weight:900;
+    margin:20px 0;
+    color:#ffd700;
+    text-shadow:0 0 10px #ffd700;
+}
+
+/* زر التحميل */
+.download-btn{
+    background:#00ffcc;
+    border:none;
+    padding:15px 30px;
+    font-size:20px;
+    border-radius:12px;
+    cursor:pointer;
+    animation:shake 1s infinite, glow 2s infinite alternate;
+}
+
+@keyframes shake{
+    0%{transform:translateX(0)}
+    25%{transform:translateX(-3px)}
+    50%{transform:translateX(3px)}
+    75%{transform:translateX(-3px)}
+}
+
+@keyframes glow{
+    from{box-shadow:0 0 10px #00ffcc}
+    to{box-shadow:0 0 25px #00ffcc}
+}
+
+.features{
+    text-align:right;
+    margin-top:20px;
+    line-height:2;
+}
+
+.counter{
+    margin-top:15px;
+    font-size:18px;
+}
+
+/* نافذة منبثقة */
 .popup{
+    display:none;
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    background:#000000dd;
-    display:none;
+    background:rgba(0,0,0,0.8);
     justify-content:center;
     align-items:center;
 }
 
 .popup-box{
-    background:#021c3d;
+    background:#111;
     padding:30px;
-    border-radius:20px;
-    width:300px;
-}
-
-.timer{
-    font-size:45px;
-    color:#00fff7;
-}
-
-/* التعليقات */
-.comments{
-    margin-top:40px;
-    height:120px;
-    overflow:hidden;
-}
-
-.comment{
-    animation:slide 12s infinite;
-}
-
-@keyframes slide{
-    0%{transform:translateY(0);}
-    25%{transform:translateY(-40px);}
-    50%{transform:translateY(-80px);}
-    75%{transform:translateY(-120px);}
-    100%{transform:translateY(0);}
+    border-radius:12px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="marquee">
-🚀 أسرع تطبيق VPN — بدون فصل — سرعة خارقة — VIP حقيقي
+<div class="container">
+
+<h1>تحميل التطبيق</h1>
+
+<div class="ad-text">
+🔥 سرعة خارقة بدون فصل — أفضل تطبيق إنترنت مجاني 🔥
 </div>
 
-<h1>INTERNET ILIMITADO</h1>
-<div style="font-size:25px;">⭐⭐⭐⭐⭐ تقييم 5/5</div>
+<button class="download-btn" onclick="startDownload()">
+⬇ تحميل الآن
+</button>
 
-<div class="box">
-📥 عدد التحميلات: <span id="downloads">1250</span><br>
-📦 الحجم: 62MB<br>
-📱 الإصدار: 2.1
+<div class="counter">
+⭐ عدد التحميلات: <span id="count">0</span>
 </div>
 
-<button class="download-btn" onclick="startDownload()">تحميل التطبيق VIP</button>
+<div class="features">
+<h3>مميزات التطبيق:</h3>
+✔ يعمل بسرعة عالية جداً  
+✔ بدون إعلانات مزعجة  
+✔ تطبيق خالي من المشاكل  
+✔ اتصال ثابت بدون انقطاع  
+✔ سهل الاستخدام  
+</div>
+
+</div>
 
 <!-- نافذة التحميل -->
 <div class="popup" id="popup">
 <div class="popup-box">
-<h2>🔒 VIP SYSTEM</h2>
-<p>جاري التحقق من الأمان...</p>
-<div class="timer" id="timer">5</div>
-</div>
-</div>
-
-<!-- التعليقات -->
-<div class="comments">
-<div class="comment">
-💬 تطبيق روعة وسريع جداً 🔥<br><br>
-💬 لا يوجد فصل أبداً ❤️<br><br>
-💬 أفضل VPN جربته 🚀<br><br>
-💬 سرعة خيالية بدون مشاكل ⭐
+<h3>⚡ فحص VIP قبل التحميل</h3>
+<p id="timer">جاري التحقق... 5</p>
 </div>
 </div>
 
 <script>
+const link="https://www.mediafire.com/file/yta55fap4w6x0mj/INTERNET_ILIMITADO_2.1.apk/file";
+
+/* عداد التحميلات */
+let downloads=localStorage.getItem("downloads") || 0;
+document.getElementById("count").innerText=downloads;
+
+/* بدء التحميل */
 function startDownload(){
+
     document.getElementById("popup").style.display="flex";
 
     let time=5;
-    let counter=setInterval(()=>{
+    let timer=setInterval(()=>{
         time--;
-        document.getElementById("timer").innerText=time;
+        document.getElementById("timer").innerText="جاري التحقق... "+time;
 
         if(time<=0){
-            clearInterval(counter);
-            window.location.href="https://www.mediafire.com/file/yta55fap4w6x0mj/INTERNET_ILIMITADO_2.1.apk/file";
+            clearInterval(timer);
+
+            downloads++;
+            localStorage.setItem("downloads",downloads);
+            document.getElementById("count").innerText=downloads;
+
+            window.location.href=link;
         }
+
     },1000);
 }
 
-/* حماية النسخ */
-document.addEventListener("contextmenu",e=>e.preventDefault());
+/* منع نسخ الرابط */
 document.addEventListener("copy",e=>e.preventDefault());
+document.addEventListener("contextmenu",e=>e.preventDefault());
 </script>
 
 </body>
