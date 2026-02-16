@@ -3,44 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تحميل التطبيق</title>
+<title>تحميل INTERNET ILIMITADO</title>
 
 <style>
 body{
     margin:0;
     font-family:Arial;
-    background:#0b1f4b;
-    text-align:center;
+    background:linear-gradient(135deg,#0b1f4b,#021027);
     color:white;
+    text-align:center;
 }
 
 .container{
-    margin-top:80px;
+    max-width:500px;
+    margin:auto;
+    padding:30px;
 }
 
 .logo{
-    width:200px;
-    margin-bottom:30px;
+    width:160px;
+    margin-bottom:15px;
+}
+
+.app-img{
+    width:140px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.6);
+    margin:20px 0;
+}
+
+h1{
+    margin:5px;
+}
+
+.rating{
+    color:gold;
+    font-size:22px;
+    margin:10px 0;
+}
+
+.stats{
+    background:#0f2a63;
+    padding:12px;
+    border-radius:12px;
+    margin:20px 0;
 }
 
 button{
     background:#ff0000;
     padding:18px 40px;
-    font-size:22px;
+    font-size:20px;
     border:none;
     border-radius:12px;
     color:white;
     cursor:pointer;
+    transition:0.3s;
 }
 
 button:hover{
     background:#cc0000;
+    transform:scale(1.05);
 }
 
 #countdown{
-    font-size:28px;
-    margin-top:25px;
-    display:none;
+    font-size:26px;
+    margin-top:20px;
 }
 </style>
 </head>
@@ -51,9 +78,21 @@ button:hover{
 
 <img class="logo" src="https://i.imgur.com/JqEuJ6t.png">
 
-<h2>تحميل INTERNET ILIMITADO</h2>
+<h1>INTERNET ILIMITADO</h1>
 
-<button onclick="startDownload()">تحميل الآن</button>
+<div class="rating">
+⭐⭐⭐⭐⭐ 5.0
+</div>
+
+<img class="app-img" src="https://i.imgur.com/JqEuJ6t.png">
+
+<div class="stats">
+📥 عدد التحميلات: 974 <br>
+📦 الحجم: 62 MB <br>
+📱 الإصدار: 2.1
+</div>
+
+<button onclick="startDownload()">تحميل التطبيق</button>
 
 <div id="countdown"></div>
 
@@ -64,7 +103,6 @@ function startDownload(){
 
     let time = 5;
     let box = document.getElementById("countdown");
-    box.style.display="block";
 
     let timer = setInterval(function(){
 
