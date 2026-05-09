@@ -1,265 +1,492 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر الهواتف الذكي | شحن سريع</title>
 
-<title>INTERNET ILIMITADO</title>
+    <!-- خطوط عصرية -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+    <!-- أيقونات فونت أوسوم -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* خط احترافي */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #0a0f1e, #02040a);
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
 
-body{
-margin:0;
-font-family:'Cairo',sans-serif;
-background:linear-gradient(180deg,#021933,#000814);
-color:white;
-text-align:center;
-overflow-x:hidden;
-}
+        /* تأثير جزيئات في الخلفية (للإيحاء بشبكة الشحن) */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image: radial-gradient(circle at 20% 30%, rgba(0, 255, 200, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+        }
 
-/* الشريط الاعلاني */
+        /* الشريط الإعلاني العلوي */
+        .marquee {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(8, 12, 25, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 14px 0;
+            overflow: hidden;
+            z-index: 999;
+            border-bottom: 2px solid #ffb300;
+            box-shadow: 0 4px 20px rgba(255, 179, 0, 0.3);
+        }
 
-.marquee{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(0,0,0,0.7);
-padding:12px 0;
-overflow:hidden;
-z-index:999;
-border-bottom:1px solid #00ffd5;
-}
+        .marquee span {
+            display: inline-block;
+            white-space: nowrap;
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 0 0 12px #ffb300;
+            letter-spacing: 1px;
+            animation: moveRight 75s linear infinite;
+        }
 
-.marquee span{
-display:inline-block;
-white-space:nowrap;
-font-size:17px;
-color:#FFD700;
-text-shadow:0 0 10px #FFD700;
-animation:moveRight 80s linear infinite;
-}
+        @keyframes moveRight {
+            0% {
+                transform: translateX(-100%);
+            }
+            80% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
 
-@keyframes moveRight{
-0%{transform:translateX(-100%);}
-80%{transform:translateX(100%);}
-100%{transform:translateX(100%);}
-}
+        /* الحاوية الرئيسية */
+        .container {
+            position: relative;
+            z-index: 2;
+            padding-top: 100px;
+            max-width: 520px;
+            margin: auto;
+            padding-bottom: 40px;
+        }
 
-/* المحتوى */
+        /* بنر المتجر */
+        .store-banner {
+            background: linear-gradient(135deg, #1a1f35, #0f1322);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 28px;
+            padding: 30px 20px;
+            margin: 0 15px 25px;
+            box-shadow: 0 15px 40px rgba(255, 179, 0, 0.25), 0 0 60px rgba(0, 195, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
 
-.container{
-padding-top:80px;
-max-width:500px;
-margin:auto;
-}
+        .store-banner::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 215, 0, 0.15);
+            border-radius: 50%;
+            filter: blur(25px);
+        }
 
-.title{
-font-size:34px;
-color:#00ffd5;
-text-shadow:0 0 15px #00ffd5;
-}
+        .store-icon {
+            font-size: 55px;
+            color: #FFD700;
+            filter: drop-shadow(0 0 20px #ffaa00);
+            margin-bottom: 10px;
+        }
 
-/* زر التحميل */
+        .store-title {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffd966, #ffb300, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 10px 0 5px;
+            letter-spacing: 1px;
+        }
 
-.downloadBtn{
-margin-top:35px;
-padding:18px;
-border-radius:18px;
-background:linear-gradient(45deg,#00ffd5,#00aaff);
-font-size:22px;
-font-weight:bold;
-color:black;
-cursor:pointer;
-box-shadow:0 0 25px #00ffd5;
-animation:glow 2s infinite alternate,shake 1.5s infinite;
-}
+        .store-sub {
+            color: #aaccff;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
 
-.downloadBtn span{
-display:block;
-font-size:15px;
-margin-top:5px;
-}
+        /* زر التحميل الرئيسي */
+        .downloadBtn {
+            margin: 25px auto 15px;
+            padding: 20px 30px;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #ffb300, #ff6b00);
+            font-size: 24px;
+            font-weight: 800;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(255, 140, 0, 0.7), 0 0 40px #ff8c00;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.3s;
+            animation: glowPulse 2s infinite alternate, shake 2.5s infinite;
+            position: relative;
+            z-index: 5;
+        }
 
-@keyframes glow{
-from{box-shadow:0 0 10px #00ffd5;}
-to{box-shadow:0 0 45px #00ffd5;}
-}
+        .downloadBtn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 40px #ff8c00;
+        }
 
-@keyframes shake{
-0%,100%{transform:translateX(0)}
-50%{transform:translateX(4px)}
-}
+        .downloadBtn i {
+            font-size: 28px;
+        }
 
-/* عداد */
+        .downloadBtn span {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-top: 2px;
+        }
 
-.counter{
-margin-top:25px;
-font-size:20px;
-color:#FFD700;
-}
+        @keyframes glowPulse {
+            from {
+                box-shadow: 0 0 20px #ff8c00, 0 0 50px rgba(255, 140, 0, 0.6);
+            }
+            to {
+                box-shadow: 0 0 45px #ffaa00, 0 0 70px #ff6b00;
+            }
+        }
 
-/* المميزات */
+        @keyframes shake {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
 
-.features{
-margin-top:40px;
-text-align:right;
-padding:0 25px;
-}
+        /* العداد */
+        .counter {
+            margin: 20px 0 30px;
+            font-size: 20px;
+            font-weight: 600;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 10px 25px;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px dashed #ffb300;
+            color: #ffd966;
+            backdrop-filter: blur(5px);
+        }
 
-.features h2{
-text-align:center;
-margin-bottom:20px;
-}
+        .counter i {
+            color: #ffaa00;
+            margin-right: 5px;
+        }
 
-.feature{
-margin:18px 0;
-font-size:19px;
-position:relative;
-padding-right:30px;
-}
+        /* المميزات */
+        .features {
+            margin: 25px 15px 30px;
+            text-align: right;
+            padding: 25px 20px;
+            background: rgba(20, 25, 45, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
 
-.feature::before{
-content:"✔";
-position:absolute;
-right:0;
-color:#00ff66;
-font-size:22px;
-text-shadow:0 0 10px #00ff66;
-}
+        .features h2 {
+            text-align: center;
+            margin-bottom: 22px;
+            font-size: 26px;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
 
-/* تليجرام */
+        .feature {
+            margin: 18px 0;
+            font-size: 18px;
+            position: relative;
+            padding-right: 38px;
+            color: #e0e0ff;
+            font-weight: 500;
+            transition: 0.3s;
+            cursor: default;
+        }
 
-.telegram{
-margin-top:40px;
-font-size:24px;
-color:#00c3ff;
-cursor:pointer;
-text-shadow:0 0 10px #00c3ff;
-}
+        .feature:hover {
+            color: #fff;
+            transform: translateX(-5px);
+        }
 
-/* نافذة الانتظار */
+        .feature::before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: #00e676;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 12px #00e676;
+        }
 
-.popup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-justify-content:center;
-align-items:center;
-z-index:9999;
-}
+        /* قسم التواصل البديل (بدون تيليجرام) */
+        .social-links {
+            margin: 30px 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-.popupContent{
-background:#021933;
-padding:45px;
-border-radius:20px;
-box-shadow:0 0 30px #00ffd5;
-font-size:22px;
-}
+        .social-btn {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 50px;
+            padding: 12px 24px;
+            color: #FFD700;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
 
-/* الفوتر */
+        .social-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffaa00;
+            box-shadow: 0 0 20px #ffaa00;
+        }
 
-.footer{
-margin-top:60px;
-font-size:14px;
-color:#ccc;
-padding-bottom:30px;
-}
+        /* نافذة الانتظار */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
 
-</style>
+        .popupContent {
+            background: linear-gradient(145deg, #0e1424, #1a1f35);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 0 60px #ffaa00, 0 20px 40px rgba(0, 0, 0, 0.8);
+            font-size: 24px;
+            color: #fff;
+            border: 1px solid rgba(255, 200, 0, 0.6);
+            text-align: center;
+        }
+
+        .popupContent i {
+            font-size: 45px;
+            color: #FFD700;
+            margin-bottom: 15px;
+            display: block;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .timer-num {
+            font-weight: 800;
+            font-size: 38px;
+            color: #ffb300;
+            text-shadow: 0 0 25px #ff8c00;
+        }
+
+        /* الفوتر */
+        .footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #8899bb;
+            padding-bottom: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer i {
+            color: #ffb300;
+            margin: 0 5px;
+        }
+
+        /* تأثيرات إضافية للجوال */
+        @media (max-width: 480px) {
+            .store-title {
+                font-size: 28px;
+            }
+            .downloadBtn {
+                font-size: 20px;
+                padding: 16px 25px;
+            }
+        }
+    </style>
 </head>
 
 <body oncontextmenu="return false">
 
-<!-- الشريط الاعلاني -->
+    <!-- تأثير الجسيمات الخلفية -->
+    <div class="particles"></div>
 
-<div class="marquee">
-<span>
-🔥 INTERNET ILIMITADO — سرعة خارقة — بدون فصل — اتصال ثابت — VIP SYSTEM — أفضل تطبيق إنترنت مجاني — يعمل على جميع الشبكات — خفيف وسريع 🔥
-</span>
-</div>
+    <!-- الشريط الإعلاني -->
+    <div class="marquee">
+        <span>
+            🔥 متجر الشحن الذكي · شحن رصيد فوري · أحدث الهواتف بأسعار الجملة · توصيل سريع · عروض يومية حصرية · حمل التطبيق الآن واحصل على خصم 15% 🔥
+        </span>
+    </div>
 
-<div class="container">
+    <!-- المحتوى -->
+    <div class="container">
 
-<div class="title">تحميل التطبيق</div>
+        <!-- بنر المتجر -->
+        <div class="store-banner">
+            <div class="store-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="store-title">متجر الهواتف الذكي</div>
+            <div class="store-sub">شحن رصيد · بيع وشراء · صيانة</div>
+            <div style="margin-top: 8px; font-size: 14px; color: #ccc;">
+                <i class="fas fa-star" style="color: #FFD700;"></i>
+                <i class="fas fa-star" style="color: #FFD700;"></i>
+                <i class="fas fa-star" style="color: #FFD700;"></i>
+                <i class="fas fa-star" style="color: #FFD700;"></i>
+                <i class="fas fa-star-half-alt" style="color: #FFD700;"></i>
+                <span style="margin-right: 5px;">4.8 (آلاف المستخدمين)</span>
+            </div>
+        </div>
 
-<div class="downloadBtn" onclick="startDownload()">
-⬇ تحميل الآن
-<span>INTERNET ILIMITADO</span>
-</div>
+        <!-- زر التحميل -->
+        <div class="downloadBtn" onclick="startDownload()">
+            <i class="fas fa-download"></i>
+            حمل التطبيق الآن
+            <span>إصدار V3 · مجاني تماماً</span>
+        </div>
 
-<div class="counter">⭐ عدد التحميلات: <span id="count">1308</span></div>
+        <!-- عداد التحميلات -->
+        <div class="counter">
+            <i class="fas fa-cloud-download-alt"></i>
+            عدد التحميلات: <span id="count">1308</span>
+        </div>
 
-<div class="features">
-<h2>مميزات التطبيق</h2>
+        <!-- مميزات التطبيق -->
+        <div class="features">
+            <h2><i class="fas fa-crown" style="color: #FFD700;"></i> لماذا تطبيقنا؟</h2>
 
-<div class="feature">سرعة إنترنت خارقة جداً</div>
-<div class="feature">يعمل بدون فصل</div>
-<div class="feature">اتصال ثابت ومستقر</div>
-<div class="feature">بدون إعلانات مزعجة</div>
-<div class="feature">خفيف وسهل الاستخدام</div>
+            <div class="feature">شحن رصيد دولي ومحلي بضغطة</div>
+            <div class="feature">متجر هواتف بأفضل الأسعار والضمان</div>
+            <div class="feature">توصيل سريع خلال 24 ساعة</div>
+            <div class="feature">عروض وخصومات حصرية أسبوعياً</div>
+            <div class="feature">دعم فني مباشر داخل التطبيق</div>
+            <div class="feature">تصميم سهل وآمن 100%</div>
+        </div>
 
-</div>
+        <!-- أزرار تواصل اجتماعي بديلة (بدون تيليجرام) -->
+        <div class="social-links">
+            <div class="social-btn" onclick="alert('تابعنا على فيسبوك قريباً!')">
+                <i class="fab fa-facebook-f"></i> فيسبوك
+            </div>
+            <div class="social-btn" onclick="alert('تابعنا على انستغرام قريباً!')">
+                <i class="fab fa-instagram"></i> انستغرام
+            </div>
+            <div class="social-btn" onclick="window.open('https://wa.me/?text=مرحباً، أريد الاستفسار عن تطبيق المتجر')">
+                <i class="fab fa-whatsapp"></i> واتساب
+            </div>
+        </div>
 
-<div class="telegram" onclick="window.open('https://t.me/INTERNET_ILIMITADOO')">
-📩 تواصل تليجرام
-</div>
+        <!-- الفوتر -->
+        <div class="footer">
+            <i class="far fa-copyright"></i> 2024 متجر الهواتف الذكي <br>
+            <span style="color: #ffb300;">✦ شحن سريع · أسعار الجملة ✦</span><br>
+            <small>جميع الحقوق محفوظة</small>
+        </div>
+    </div>
 
-<div class="footer">
-AHMAD EL 2024 ©<br>
-HASSA KAKO
-</div>
+    <!-- نافذة الانتظار -->
+    <div class="popup" id="popup">
+        <div class="popupContent">
+            <i class="fas fa-sync-alt"></i>
+            ⏳ جاري تجهيز التطبيق...<br><br>
+            انتظر <span class="timer-num" id="timer">5</span> ثواني
+        </div>
+    </div>
 
-</div>
+    <script>
+        // عداد التحميلات المحفوظ محلياً
+        let downloads = localStorage.getItem("storeDownloads") || 1308;
+        document.getElementById("count").innerText = downloads;
 
-<!-- نافذة الانتظار -->
+        function startDownload() {
+            // زيادة العداد
+            downloads++;
+            localStorage.setItem("storeDownloads", downloads);
+            document.getElementById("count").innerText = downloads;
 
-<div class="popup" id="popup">
-<div class="popupContent">
-⏳ جاري تجهيز الرابط...<br><br>
-انتظر <span id="timer">5</span> ثواني
-</div>
-</div>
+            // إظهار نافذة الانتظار
+            document.getElementById("popup").style.display = "flex";
 
-<script>
+            let time = 5;
+            const timerEl = document.getElementById("timer");
+            timerEl.innerText = time;
 
-/* عداد التحميلات الحقيقي */
+            const interval = setInterval(() => {
+                time--;
+                timerEl.innerText = time;
 
-let downloads = localStorage.getItem("downloads") || 1308;
-document.getElementById("count").innerText = downloads;
-
-/* التحميل */
-
-function startDownload(){
-
-downloads++;
-localStorage.setItem("downloads", downloads);
-document.getElementById("count").innerText = downloads;
-
-document.getElementById("popup").style.display="flex";
-
-let time=5;
-
-let interval=setInterval(()=>{
-time--;
-document.getElementById("timer").innerText=time;
-
-if(time<=0){
-clearInterval(interval);
-window.location.href="https://www.mediafire.com/file/od3qdvrr58w91ts/INTERNET+ILIMITADO_V3.apk/file";
-}
-
-},1000);
-
-}
-
-</script>
+                if (time <= 0) {
+                    clearInterval(interval);
+                    // توجيه المستخدم إلى الرابط الجديد الذي حددته
+                    window.location.href = "https://www.appcreator24.com/app4015151-oevklq";
+                }
+            }, 1000);
+        }
+    </script>
 
 </body>
 </html>
